@@ -8,7 +8,6 @@ namespace Domain.Entities
 {
     public class Contrato
     {
-
         public Guid Id { get; set; }
         public Guid pacienteId { get; set; }
         public Guid servicioId { get; set; }

@@ -10,12 +10,23 @@ namespace Aplication.Validators
 {
     public class CrearContratoValidator : AbstractValidator<CrearContratoRequest>
     {
+
         public CrearContratoValidator()
         {
-            RuleFor(x => x.PacienteId).NotEmpty();
-            RuleFor(x => x.ServicioId).NotEmpty();
-            RuleFor(x => x.FechaInicio).GreaterThan(DateTime.Today);
-            RuleFor(x => x.PoliticaCambio).NotEmpty().MaximumLength(500);
+            RuleFor(x => x.PacienteId)
+                .NotEmpty().WithMessage("El ID del paciente es obligatorio.");
+
+            RuleFor(x => x.ServicioId)
+                .NotEmpty().WithMessage("Debe seleccionar un servicio.");
+
+            RuleFor(x => x.FechaInicio)
+                .GreaterThan(DateTime.Today).WithMessage("La fecha de inicio debe ser posterior a hoy.");
+
+            RuleFor(x => x.PoliticaCambio)
+                .NotEmpty().WithMessage("Debe especificar la política de cambio.")
+                .MaximumLength(500).WithMessage("La política de cambio no debe exceder los 500 caracteres.");
+
         }
+
     }
 }

@@ -11,6 +11,7 @@ namespace Domain.Interfaces
     {
         Task<Contrato> CrearContratoAsync(Contrato contrato);
         Task<Contrato?> ObtenerContratoPorIdAsync(Guid id);
+        Task<IEnumerable<Contrato>> ObtenerTodosAsync();
         Task<IEnumerable<Contrato>> ObtenerContratosPorPacienteAsync(Guid pacienteId);
         Task CancelarContratoAsync(Guid contratoId);
         Task<bool> ExisteContratoActivoAsync(Guid pacienteId);

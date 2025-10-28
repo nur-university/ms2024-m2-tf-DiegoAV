@@ -63,6 +63,13 @@ namespace Infraestructure.Persistence
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Contrato>> ObtenerTodosAsync()
+        {
+            return await _context.Contratos
+                .Include(c => c.servicio)
+                .OrderByDescending(c => c.fechaInicio)
+                .ToListAsync();
+        }
 
     }
 }

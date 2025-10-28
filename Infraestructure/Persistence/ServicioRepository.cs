@@ -29,5 +29,12 @@ namespace Infraestructure.Persistence
         {
             return await _context.Servicios.FindAsync(id);
         }
+
+        public async Task<Servicio> CrearServicioAsync(Servicio servicio)
+        {
+            _context.Servicios.Add(servicio);
+            await _context.SaveChangesAsync();
+            return servicio;
+        }
     }
 }

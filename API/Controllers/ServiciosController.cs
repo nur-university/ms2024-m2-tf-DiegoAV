@@ -1,4 +1,7 @@
-﻿using Domain.Interfaces;
+﻿using Aplication.DTOs;
+using Domain.Entities;
+using Domain.Interfaces;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -32,5 +35,42 @@ namespace API.Controllers
             return Ok(servicio);
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> CrearServicio([FromBody] CrearServicioRequest request)
+        //{
+        //    var servicio = new Servicio
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        nombre = request.nombre,
+        //        duracionDias = request.duracionDias,
+        //        modalidadRevision = request.modalidadRevision,
+        //        costo = request.costo,
+        //        incluyeFinesDeSemana = request.incluyeFinesDeSemana
+        //    };
+
+        //    var creado = await _servicioRepository.CrearServicioAsync(servicio);
+        //    return Ok(creado);
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> CrearServicio([FromBody] CrearServicioRequest request, [FromServices] IValidator<CrearServicioRequest> validator)
+        {
+            var validationResult = await validator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
+
+            var servicio = new Servicio
+            {
+                Id = Guid.NewGuid(),
+                nombre = request.nombre,
+                duracionDias = request.duracionDias,
+                modalidadRevision = request.modalidadRevision,
+                costo = request.costo,
+                incluyeFinesDeSemana = request.incluyeFinesDeSemana
+            };
+
+            var creado = await _servicioRepository.CrearServicioAsync(servicio);
+            return Ok(creado);
+        }
     }
 }

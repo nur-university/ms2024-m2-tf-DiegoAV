@@ -3,6 +3,7 @@ using Aplication.Validators;
 using Domain.Interfaces;
 using FluentValidation;
 using Infraestructure.Persistence;
+using Infraestructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IContratoRepository, ContratoRepository>();
 builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
+builder.Services.AddScoped<ICalendarioEntregaRepository, CalendarioEntregaRepository>();
+builder.Services.AddValidatorsFromAssemblyContaining<ActualizarHorarioEntregaValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CrearContratoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CrearServicioValidator>();
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));

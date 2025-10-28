@@ -9,6 +9,7 @@ namespace Domain.Interfaces
 {
     public interface IServicioRepository
     {
+        Task<Servicio> CrearServicioAsync(Servicio servicio);
         Task<IEnumerable<Servicio>> ObtenerServiciosAsync();
         Task<Servicio?> ObtenerServicioPorIdAsync(Guid id);
     }

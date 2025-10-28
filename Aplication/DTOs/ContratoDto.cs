@@ -8,13 +8,24 @@ namespace Aplication.DTOs
 {
     public class ContratoDto
     {
+        //public Guid Id { get; set; }
+        //public Guid PacienteId { get; set; }
+        //public Guid ServicioId { get; set; }
+        //public DateTime FechaInicio { get; set; }
+        //public DateTime FechaFin { get; set; }
+        //public string Estado { get; set; }
+        //public decimal MontoTotal { get; set; }
+
+
         public Guid Id { get; set; }
         public Guid PacienteId { get; set; }
         public Guid ServicioId { get; set; }
+        public string NombreServicio { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public string Estado { get; set; }
         public decimal MontoTotal { get; set; }
+
 
     }
 }
